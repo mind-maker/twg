@@ -2,6 +2,7 @@ package signal
 
 import (
 	"encoding/json"
+	"log"
 	"net/http"
 )
 
@@ -24,5 +25,8 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
-	w.Write(data)
+	_, err = w.Write(data)
+	if err != nil {
+		log.Println(err)
+	}
 }
